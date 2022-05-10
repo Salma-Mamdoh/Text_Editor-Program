@@ -80,6 +80,20 @@ int main(){
         cout << "Word was not found in the file \n\n"; 
         goto START;
     }
+    else if (choose == 11){
+        fstream fin(file , ios:: in);
+        string word;
+        cout <<"what the word do you wont : ";
+        cin>>word;
+        while(fin >> str){
+            if (word ==str ){
+                counter++ ;
+            }
+
+        }
+        cout << "the number of word ( " <<word << ") = "<< counter << endl << endl;
+        goto START;
+    }
 
     else if (choose == 16){
         return 0 ;
@@ -106,12 +120,17 @@ void choose_menu() {
     cout << "Enter 3--------------> Empty the file" << endl;
     cout << "Enter 4--------------> Encrypt the file content" << endl;
     cout << "Enter 5--------------> Decrypt the file content" << endl;
-    cout << "Enter 6------------->  Merge another file" << endl;
+    cout << "Enter 6-------------->  Merge another file" << endl;
     cout << "Enter 7--------------> Count the number of words in the file" << endl;
     cout << "Enter 8--------------> Count the number of characters in the file" << endl;
     cout << "Enter 9--------------> Count the number of lines in the file" << endl;
-    cout << "Enter 10--------------> Search for a word in the file" << endl;
+    cout << "Enter 10-------------> Search for a word in the file" << endl;
+    cout << "Enter 11-------------> Count the number of times a word exists in the file "<< endl;
+    cout << "Enter 12-------------> Turn the file contect to upper case " << endl;
+    cout << "Enter 13-------------> Turn the file contect to lower case " << endl;
+    cout << "Enter 14-------------> Turn file contect to 1st caps (1st char of each word is capital) " << endl;
+    cout << "Enter 15-------------> Save"<< endl;
     cout << "Enter 16-------------> Exit" << endl;
-    cout << "enter the number of choice : "; 
+    cout << "enter the number of choice : ";
   
 }
