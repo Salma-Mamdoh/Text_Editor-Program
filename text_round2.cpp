@@ -5,6 +5,10 @@ using namespace std ;
 
 void check (string str);
 void filter_6(string str1);
+void filter_7(string str1, int& i, string & s);
+void filter_8(string str1 , int & i , string& s);
+void filter_9(string str1 , int & i);
+void filter_10(string str1 , string& s);
 void choose_menu() ;
 
 int main(){
@@ -17,85 +21,30 @@ int main(){
     int choose ,counter = 0;
     choose_menu();
     cin >> choose ; 
+
     if (choose == 6){
-        string file2 ;
-        fstream fout(file , ios:: app);
-        cout << "enter srcond file : \n";
-        cin >> file2 ;
-        check(file2);
-        fstream fin(file2 , ios::in);
-        char str[100] ;
-        fout << '\n';
-        while (fin.getline(str , 100 , '\n'))
-        {
-            fout << str << endl; 
-        }
-        cout << "Done \n\n";
-        goto START;
-        }
+        filter_6(file);
+    }
 
     else if (choose == 7){
-        fstream fin(file , ios:: in);
-        while(fin >> str){
-            counter++ ;
-        }
-        cout << "the number of words = " << counter << endl << endl;
-        goto START;
+        filter_7 (file , counter , str);
     }
 
     else if (choose == 8){
-        fstream fin(file , ios:: in);
-        while(fin >> str){
-            counter = counter + str.length() ;
-            
-        }
-        cout << "the number of characters = " << counter << endl << endl ;
-        goto START;
+        filter_8(file , counter , str);
     }
+
     else if (choose == 9){
-        fstream fin(file , ios:: in);
-        char line[100];
-        while (fin.getline(line , 100 , '\n')){
-            counter++ ;
-        }
-        cout << "the number of lines = " << counter << endl << endl ;
-        goto START;
+        filter_9 (file , counter);
     }
+
     else if (choose == 10){
-        string word ;
-        cout << "enter the word to search : ";
-        cin >> word ;
-
-        fstream fin(file , ios:: in);
-
-        while(fin >> str){
-
-            if (str == word)
-            {
-                cout << "Word was found in the file \n \n"; 
-                goto START;
-            }
-        }
-
-        cout << "Word was not found in the file \n\n"; 
-        goto START;
-    }
-    else if (choose == 11){
-        fstream fin(file , ios:: in);
-        string word;
-        cout <<"what the word do you wont : ";
-        cin>>word;
-        while(fin >> str){
-            if (word ==str ){
-                counter++ ;
-            }
-
-        }
-        cout << "the number of word ( " <<word << ") = "<< counter << endl << endl;
-        goto START;
+        filter_10 (file, str);
     }
 
-    else if (choose == 16){
+    goto START;
+
+    if (choose == 16){
         return 0 ;
     }
 
@@ -107,7 +56,7 @@ void check(string str){
     if (fcheck.is_open())
         cout << "file is exist \n";
     else{
-        cout << "file does not exist \nI created it for you";
+        cout << "file does not exist \nI created it for you\n";
         fcheck.open(str , ios :: app);
     }
     fcheck.close();
@@ -120,17 +69,68 @@ void choose_menu() {
     cout << "Enter 3--------------> Empty the file" << endl;
     cout << "Enter 4--------------> Encrypt the file content" << endl;
     cout << "Enter 5--------------> Decrypt the file content" << endl;
-    cout << "Enter 6-------------->  Merge another file" << endl;
+    cout << "Enter 6--------------> Merge another file" << endl;
     cout << "Enter 7--------------> Count the number of words in the file" << endl;
     cout << "Enter 8--------------> Count the number of characters in the file" << endl;
     cout << "Enter 9--------------> Count the number of lines in the file" << endl;
     cout << "Enter 10-------------> Search for a word in the file" << endl;
-    cout << "Enter 11-------------> Count the number of times a word exists in the file "<< endl;
-    cout << "Enter 12-------------> Turn the file contect to upper case " << endl;
-    cout << "Enter 13-------------> Turn the file contect to lower case " << endl;
-    cout << "Enter 14-------------> Turn file contect to 1st caps (1st char of each word is capital) " << endl;
-    cout << "Enter 15-------------> Save"<< endl;
     cout << "Enter 16-------------> Exit" << endl;
-    cout << "enter the number of choice : ";
+    cout << "enter the number of choice : "; 
   
+}
+
+void filter_6 (string str1){
+    string file2 ;
+    fstream fout(str1 , ios:: app);
+    cout << "enter srcond file : \n";
+    cin >> file2 ;
+    check(file2);
+    fstream fin(file2 , ios::in);
+    char str[100] ;
+    fout << '\n';
+    while (fin.getline(str , 100 , '\n'))
+    {
+        fout << str << endl; 
+    }
+    cout << "Done \n\n";
+}
+
+void filter_7 (string str1 , int & i , string& s){
+    fstream fin(str1 , ios:: in);
+    while(fin >> s){
+        i++ ;
+    }
+    cout << "the number of words = " << i << endl << endl;
+}
+
+void filter_8 (string str1 , int & i , string& s){
+    fstream fin(str1 , ios:: in);
+    while(fin >> s){
+        i = i + s.length() ;
+    }
+    cout << "the number of characters = " << i << endl << endl ;
+}
+
+void filter_9 (string str1 , int & i){
+    fstream fin(str1 , ios:: in);
+    char line[100];
+    while (fin.getline(line , 100 , '\n')){
+        i++ ;
+    }
+    cout << "the number of lines = " << i << endl << endl ;
+}
+
+void filter_10 (string str1, string & s){
+    string word ;
+    bool check = false ;
+    cout << "enter the word to search : ";
+    cin >> word ;
+    fstream fin(str1 , ios:: in);
+    while(fin >> s){
+        if (s == word)
+        {
+            check = true ;
+        }
+    }
+    check == false ? cout << "Word was not found in the file \n\n" : cout << "Word was found in the file \n \n"; 
 }
