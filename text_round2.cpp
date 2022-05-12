@@ -22,7 +22,11 @@ int main(){
     choose_menu();
     cin >> choose ; 
 
-    if (choose == 6){
+    if (choose == 16){
+        return 0 ;
+    }
+    
+    else if (choose == 6){
         filter_6(file);
     }
 
@@ -43,10 +47,6 @@ int main(){
     }
 
     goto START;
-
-    if (choose == 16){
-        return 0 ;
-    }
 
 }
 
