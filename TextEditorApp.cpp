@@ -1,5 +1,5 @@
 #include <iostream>
-#include "CS112-203-2nd-s15,16-20210162-20210254-20211014-A4-TextEditorFunc.h"
+#include "TextEditor.h"
 #include <fstream> //file stream
 #include <string>
 #include<cstring>
